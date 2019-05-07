@@ -13,18 +13,3 @@
 # puts to_initials("Kelvin Bridges")      # => "KB"
 # puts to_initials("Michaela Yamamoto")   # => "MY"
 # puts to_initials("Mary La Grange")      # => "MLG"
-
-
-# FIRST IN ARRAY
-
-
-
-# ABBREVIATE SENTENCE
-
-
-
-#  FORMAT NAME
-
-
-
-# IS VALID NAME

@@ -1,0 +1,41 @@
+# For simplicity, we'll consider an email valid when it satisfies all of the following:
+# - contains exactly one @ symbol
+# - contains only lowercase alphabetic letters before the @
+# - contains exactly one . after the @
+
+def is_valid_email(str)
+	parts = str.split("@")
+
+	if !str.include?('@')
+		return false
+	end
+
+	if parts.length != 2
+		return false
+	end
+
+	left = parts[0]
+	right = parts[1]
+	alpha = "abcdefghijklmnopqrstuvwxyz"
+	
+
+	left.each_char do |char|
+		if !alpha.include?(char)
+			return false
+		end
+	end
+
+
+	if right.split(".").length != 2
+		return false
+	end
+
+	return true
+end
+
+puts is_valid_email("abc@xy.z")         # => true
+puts is_valid_email("jdoe@gmail.com")   # => true
+puts is_valid_email("jdoe@g@mail.com")  # => false
+puts is_valid_email("jdoe42@gmail.com") # => false
+puts is_valid_email("jdoegmail.com")    # => false
+puts is_valid_email("az@email")         # => false

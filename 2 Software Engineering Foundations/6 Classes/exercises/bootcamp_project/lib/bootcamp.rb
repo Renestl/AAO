@@ -30,26 +30,45 @@ class Bootcamp
 	end
 
 	def hire(teacher)
-		@teachers << teacher
+		teachers << teacher
 	end
 
 	def enroll(student)
 		if students.length < student_capacity
-			@students << student
+			students << student
 			return true
-		else
-			return false
 		end
+		
+		false	
 	end
 
 	def enrolled?(student)
-		if students.include?(student)
+		students.include?(student)
+	end
+
+	def student_to_teacher_ratio
+		students.length / teachers.length
+	end
+
+	def add_grade(student, grade)
+		if self.enrolled?(student)
+			@grades[student] << grade
 			return true
+		end
+
+		false
+	end
+
+	def num_grades(student)
+		@grades[student].length
+	end
+
+	def average_grade(student)
+		if self.enrolled?(student) && num_grades(student) > 0
+			return @grades[student].sum / num_grades(student)
 		else
-			return false
+			return nil
 		end
 	end
 
-	
-
-end
+end # end Bootcamp class

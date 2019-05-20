@@ -23,34 +23,67 @@ class Array
 	end
 
 	def median		
+		middle = self.length / 2
 		sorted = self.sort
-		count = sorted.length
-		middle = count / 2
 
-		if count == 0
-			return nil
-		elsif count.odd?
-			return sorted[middle.ceil]
+		return nil if self.empty?
+
+		if self.length.odd?
+			return sorted[middle]
 		else
 			left = middle - 1
 			right = middle
-
-			if count <= 2
-				return avg = (sorted[0] + sorted[1]).to_f / 2
-			end
-
-			avg = (sorted[left].to_f + sorted[right].to_f) / 2
+			avg = (sorted[left] + sorted[right]) / 2.0
 		end	
 	end
 
 	def counts 
 		count = Hash.new(0)
-
 		self.each {|ele| count[ele] += 1}
-
 		count
 	end
 
+	def my_count(arg)
+		count = 0
+		self.each do |ele|
+			if ele == arg
+				count += 1
+			end
+		end
+		count
+	end
 
+	def my_index(arg)
+		self.each_with_index do |ele, idx|
+			if ele == arg
+				return idx
+			end
+		end
+		nil
+	end
+
+	def my_uniq
+		new_array = []
+
+		self.each do |ele|
+			if !new_array.include?(ele)
+				new_array << ele
+			end
+		end
+
+		new_array
+	end
+
+	def my_transpose
+		transposed = Array.new(self.length) {Array.new()}
+
+		self.each_with_index do |ele, idx|
+			ele.each_with_index do |sub_ele, sub_idx|
+				transposed[sub_idx][idx] = sub_ele
+			end
+		end
+
+		transposed
+	end
 
 end

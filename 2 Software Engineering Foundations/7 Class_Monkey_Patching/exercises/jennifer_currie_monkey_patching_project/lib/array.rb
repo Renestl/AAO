@@ -74,12 +74,19 @@ class Array
 		new_array
 	end
 
+	## !! teacher solution
+	# def my_uniq
+	# 	hash = {}
+	# 	self.each {|ele| hash[ele] = true}
+	# 	hash.keys
+	# end
+
 	def my_transpose
 		transposed = Array.new(self.length) {Array.new()}
 
-		self.each_with_index do |ele, idx|
-			ele.each_with_index do |sub_ele, sub_idx|
-				transposed[sub_idx][idx] = sub_ele
+		self.each_with_index do |row_ele, row_idx|
+			row_ele.each_with_index do |col_ele, col_idx|
+				transposed[col_idx][row_idx] = col_ele
 			end
 		end
 

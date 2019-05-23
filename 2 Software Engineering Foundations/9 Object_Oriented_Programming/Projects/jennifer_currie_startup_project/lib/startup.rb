@@ -63,15 +63,9 @@ class Startup
 
 	def acquire(another_startup)
 		@funding += another_startup.funding
-		
-		if !@salaries.has_key?(another_startup.salaries)
-			@salaries.merge!(another_startup.salaries) { |salary, v1, v2| v1}
-		end
-
+		@salaries.merge!(another_startup.salaries) { |salary, v1, v2| v1}
 		self.employees.concat(another_startup.employees)
-
 		another_startup.close
-		
 	end
 
 end

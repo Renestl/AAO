@@ -62,9 +62,16 @@ class Startup
 	end
 
 	def acquire(another_startup)
+		#add funding
 		@funding += another_startup.funding
+	
+		# merging salaries	
 		@salaries.merge!(another_startup.salaries) { |salary, v1, v2| v1}
+		
+		# hire employees
 		self.employees.concat(another_startup.employees)
+		
+		# close acquired startup
 		another_startup.close
 	end
 

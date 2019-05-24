@@ -6,4 +6,12 @@ class Code
     "Y" => :yellow
   }
 
+  def self.valid_pegs?(char_array)
+    char_array.all? do |char|
+      POSSIBLE_PEGS.include?(char.upcase)
+    end
+  end
+
+  
+
 end

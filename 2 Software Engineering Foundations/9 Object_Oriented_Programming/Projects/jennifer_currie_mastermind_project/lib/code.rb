@@ -33,6 +33,12 @@ class Code
     end
   end
 
-  
+  def [](peg_index)
+    @pegs[peg_index]
+  end
+
+  def length
+    @pegs.length
+  end
 
 end

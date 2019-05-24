@@ -20,6 +20,11 @@ class Code
 
     Code.new(Array.new(length) { POSSIBLE_PEGS.keys.sample })
   end
+
+  def self.from_string(pegs)
+    Code.new(pegs.split(""))
+  end
+
   def initialize(pegs)
     if !Code.valid_pegs?(pegs)
       raise "Please enter valid peg colors."

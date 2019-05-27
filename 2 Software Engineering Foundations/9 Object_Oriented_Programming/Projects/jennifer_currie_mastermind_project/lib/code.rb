@@ -43,13 +43,9 @@ class Code
 
   def num_exact_matches(guess)
     exact_matches = 0
-    
-    i = 0
-    while i <= pegs.length - 1
-      if @pegs[i] == guess[i]
-        exact_matches += 1
-      end
-      i += 1
+
+    (0...guess.length).each do |idx|
+      exact_matches += 1 if self[idx] == guess[idx]
     end
 
     exact_matches
@@ -58,8 +54,8 @@ class Code
   def num_near_matches(guess)
     near_matches = 0
 
-    @pegs.each_with_index do |peg, idx|
-      if @pegs.include?(guess[idx]) && @pegs[idx] != guess[idx]     
+    self.pegs.each_with_index do |peg, idx|
+      if self.pegs.include?(guess[idx]) && self.pegs[idx] != guess[idx]     
         near_matches += 1
       end
     end
@@ -67,6 +63,8 @@ class Code
     near_matches 
   end
 
-  
+  def ==(other_code)
+    other_code == self.pegs
+  end
 
 end

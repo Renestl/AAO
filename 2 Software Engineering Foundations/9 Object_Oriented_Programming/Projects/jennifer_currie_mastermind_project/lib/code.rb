@@ -55,4 +55,18 @@ class Code
     exact_matches
   end
 
+  def num_near_matches(guess)
+    near_matches = 0
+
+    @pegs.each_with_index do |peg, idx|
+      if @pegs.include?(guess[idx]) && @pegs[idx] != guess[idx]     
+        near_matches += 1
+      end
+    end
+
+    near_matches 
+  end
+
+  
+
 end

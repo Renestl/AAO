@@ -41,4 +41,18 @@ class Code
     @pegs.length
   end
 
+  def num_exact_matches(guess)
+    exact_matches = 0
+    
+    i = 0
+    while i <= pegs.length - 1
+      if @pegs[i] == guess[i]
+        exact_matches += 1
+      end
+      i += 1
+    end
+
+    exact_matches
+  end
+
 end

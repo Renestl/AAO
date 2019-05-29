@@ -21,4 +21,14 @@ class Board
 		@grid.flatten.count(:S)
 	end
 
+	def attack(position)
+		if self[position] == :S
+			self[position] = :H
+			puts 'you sunk my battleship!'
+			return true
+		else
+			self[position] = :X
+			return false
+		end
+	end
 end

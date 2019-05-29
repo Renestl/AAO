@@ -11,10 +11,14 @@ class Board
 
 		@grid[row][col]
 	end
-	
+
 	def []=(position, value)
 		row, col = position
 		@grid[row][col] = value
+	end
+
+	def num_ships
+		@grid.flatten.count(:S)
 	end
 
 end

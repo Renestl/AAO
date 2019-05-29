@@ -7,11 +7,14 @@ class Board
 	end
 
 	def [](board_position)
-		row = board_position[0]
-		col = board_position[1]
+		row, col = board_position
 
 		@grid[row][col]
 	end
 	
+	def []=(position, value)
+		row, col = position
+		@grid[row][col] = value
+	end
 
 end

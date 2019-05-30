@@ -6,6 +6,12 @@ class Board
 		@size = n * n
 	end
 
+	def self.print_grid(grid)
+		grid.each do |row|
+			print "#{row.join(" ")}\n"
+		end
+	end
+
 	def [](board_position)
 		row, col = board_position
 

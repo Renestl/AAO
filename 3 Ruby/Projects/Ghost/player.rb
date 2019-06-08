@@ -6,7 +6,8 @@ class Player
 	end
 
 	def guess
-
+		puts "Enter a letter"
+		letter = gets.chomp.downcase
 	end
 
 	def alert_invalid_guess

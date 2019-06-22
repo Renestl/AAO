@@ -10,9 +10,10 @@ class Player
 		letter = gets.chomp.downcase
 	end
 
-	def alert_invalid_guess
-		puts "This is an invalid guess"
-		puts "Guess must be a letter of the alphabet"
+	def alert_invalid_guess(letter)
+		puts "#{letter} is an invalid guess."
+		puts "Guess must be a letter of the alphabet."
+		puts "Your guess must be able to form a valid word."
 	end
 
 end

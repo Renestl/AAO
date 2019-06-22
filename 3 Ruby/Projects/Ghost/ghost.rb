@@ -8,14 +8,23 @@ class GhostGame
 
 	def initialize(*players)
 		words = File.readlines('dictionary.txt').map(&:chomp)
-		# @dictionary = Set.new(words)
+		@dictionary = Set.new(words)
 		@players = players
 	end
 
 	def play_round
 		@fragment = ""
+
+		until round_over?
+			take_turn
+			next_player!
+		end
+
+		puts "#{previous_player.name} loses"
 	end
 
+	# HELPER METHODS
+	
 	def current_player
 		players.first
 	end 
@@ -32,20 +41,28 @@ class GhostGame
 		puts "It's #{current_player.name}'s turn!'"
 		letter = current_player.guess
 
-		if valid_play?(letter)
-			puts letter
-		else
-			current_player.alert_invalid_guess
+		if !valid_play?(letter)
+			current_player.alert_invalid_guess(letter)
 			take_turn
+		else		
+			fragment << letter
+			check_dictionary (fragment)
 		end
 	end
 
-	def valid_play?(string)
-		if ALPHABET.include?(string)
-			return true
-		else
-			return false
-		end
+	def valid_play?(letter)
+		return false unless ALPHABET.include?(letter)
+
+		potential_word = fragment + letter
+		dictionary.any? { |word| word.start_with?(potential_word)}
+	end
+
+	def check_dictionary(fragment)
+		dictionary.include?(fragment)
+	end
+
+	def round_over?
+		check_dictionary(fragment)
 	end
 
 end

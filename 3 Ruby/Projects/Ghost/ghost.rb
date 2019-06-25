@@ -15,7 +15,11 @@ class GhostGame
 	end
 
 	def run
+		welcome
+
 		play_round until game_over?
+
+		winner
 	end
 
 	def play_round
@@ -31,7 +35,7 @@ class GhostGame
 	end
 
 	def game_over?
-		losses.value?(MAX_LOSSES)
+		remaining_players == 1
 	end
 
 	# HELPER METHODS
@@ -46,6 +50,50 @@ class GhostGame
 
 	def next_player!
 		players.rotate!
+
+		players.rotate! until losses[current_player] < MAX_LOSSES
+	end
+
+	def valid_play?(letter)
+		return false unless ALPHABET.include?(letter)
+
+		potential_word = fragment + letter
+		dictionary.any? { |word| word.start_with?(potential_word)}
+	end
+
+	def check_dictionary(fragment)
+		dictionary.include?(fragment)
+	end
+
+	def round_over?
+		check_dictionary(fragment)
+	end
+
+	def record(player)
+		count = losses[player]
+		"GHOST"[0, count]
+	end
+
+	def player_eliminated
+		players.slice!(players.index(previous_player))
+	end
+
+	def remaining_players
+		losses.count{ |k, loss| loss < MAX_LOSSES }
+	end
+
+	def winner
+		puts "#{current_player.name} wins!"
+	end
+
+	# Methods that show game prompts to user
+	def welcome
+		puts "GHOST\n"
+		puts "  GHOST\n"
+		puts "    GHOST\n"
+		puts "      GHOST\n"
+		puts "        GHOST\n"
+
 	end
 
 	def valid_play?(letter)
@@ -101,11 +149,35 @@ class GhostGame
 
 		if losses[previous_player] == MAX_LOSSES
 			puts "#{previous_player.name} has been eliminated!"
+			player_eliminated
 		end
 
 		display_standings
 	end
-
 end
 
-# game = GhostGame.new(Player.new("Rob"),Player.new("Janice"), Player.new("Rick"),Player.new("Joy"))
+if __FILE__ == $PROGRAM_NAME
+	puts "Let's play a game of ghost!\n"
+
+	names = []
+
+	puts "How many players:"	
+	num_players = gets.chomp.to_i
+
+	if num_players.is_a?(Integer) && num_players < 1
+		return puts "Please try again and enter a number"
+	end
+		
+	num_players.times do |player_name|
+		puts "Enter player name:"
+		player_name = gets.chomp
+		names << player_name
+	end
+
+	game_players = names.map { |name| Player.new(name)}
+
+	game = GhostGame.new(*game_players)
+
+	# game = GhostGame.new(Player.new("Rob"),Player.new("Janice"), Player.new("Rick"),Player.new("Joy"))
+	game.run
+end

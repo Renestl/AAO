@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Recipes</title>
+</head>
+<body>
+	<header>
+		<img src="./app_academy_logo_original.jpg" alt="App Academy Logo">
+		<nav>
+			<ul>
+				<li><a href="#description">Description</a></li>
+				<li><a href="#ingredients">Ingredients</a></li>
+				<li><a href="#directions">Directions</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<aside>
+		<h2 id="ingredients">Ingredients</h2>
+		<ul>
+			<li>1 small onion, finely chopped</li>
+			<li>3 cloves garlic, minced</li>
+			<li>1/2 medium red bell pepper, chopped</li>
+			<li>1/2 cup vegan crumbles, (optional)</li>
+			<li>1 teaspoon chili powder, or 1/4-1/2 teaspoon cayenne pepper</li>
+			<li>1 teaspoon cumin</li>
+			<li>1 teaspoon paprika</li>
+			<li>1/2 teaspoon smoked paprika</li>
+			<li>1/2 teaspoon dried oregano</li>
+			<li>1 1/2 teaspoons salt</li>
+			<li>1-15 ounce can diced tomatoes</li>
+			<li>2 tablespoons tomato paste</li>
+			<li>1-15 ounce can kidney beans</li>
+			<li>1-8 ounce dry elbow macaroni</li>
+			<li>2 cups vegetable broth</li>
+		</ul>
+	</aside>
+
+	<section>
+		<h1>Chili Mac</h1>
+
+		<figure>
+			<img src="https://healthiersteps.com/wp-content/uploads/2018/10/chili-mac-and-cheese-white-bowl.jpg" width="500" alt="Chili mac">
+			<figcaption>
+				<a href="https://en.wikipedia.org/wiki/Chili_mac">Chili mac Wiki</a>
+			</figcaption>
+		</figure>
+
+		<h2 id="description">Description</h2>
+		<p>Chili mac really comes alive from a mixture of a grain or other starch, your favorite beans, a little veggies and a wonderful mixture of spices.
+			<br/>
+			<br/>
+		</p>
+
+		<h2 id="directions">Directions</h2>
+		<ol>
+			<li>Set Instant Pot to 'Saute' setting. Heat oil and add onions, cook until soft. Stir in garlic and bell pepper and cook until fragrant. Add vegan crumbles and stir until brown, about 3 minutes.</li>
+			<li>Add cumin, chili, paprika, smoked paprika, oregano and salt, stir until fragrant. Stir in tomatoes, tomato paste, kidney beans, elbow pasta, and vegetable broth.</li>
+			<li>Select off settings, cover Instant pot, turn the valve to the sealing position then select Manual Settings and adjust pressure to high for 4 minutes.</li>
+			<li>When finished cooking, quick release pressure according to manufacturers directions. I usually carefolly place a damp kitchen cloth over the valve.</li>
+			<li>After pressure is released, remove lid and stir in vegan shredded cheese and serve.</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>Reviews</h2>
+		<form action="">
+			<label for="name">Name</label>
+			<input id="name" type="text">
+
+			<label for="rating">Rating</label>
+			1<input type="radio" id="" name="rating" value="1" checked>
+			2<input type="radio" id="" name="rating" value="2">
+			3<input type="radio" id="" name="rating" value="3">
+			4<input type="radio" id="" name="rating" value="4">
+			5<input type="radio" id="" name="rating" value="5">
+
+			<label for="expertise">Cooking Expertise</label>
+			<select id="expertise" name="expertise">
+				<option value="Select Cooking Expertise" disabled="true" selected="true">Select Cooking Experise</option>
+
+				<option value="Sometimes Cook">Sometimes Cook</option>
+
+				<option value="Cook Everyday">Cook Everyday</option>
+
+				<option value="Cooking is a Hobby">Cooking is a Hobby</option>
+
+				<option value="Professional Chef">Professional Chef</option>
+			</select>
+
+			<label>Review
+				<textarea name="review" cols="30" rows="10"></textarea>
+			</label>
+
+			<input type="submit" value="Submit Review">
+		</form>
+	</section>
+
+	<footer>
+		<p>
+			Original recipe by <a href="https://healthiersteps.com/recipe/instant-pot-vegan-chili-mac-and-cheese/">Healthier Steps</a>
+		</p>
+	</footer>
+</body>
+</html>

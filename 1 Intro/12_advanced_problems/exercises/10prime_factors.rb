@@ -15,12 +15,13 @@ end
 def prime?(num)
   return false if num < 2
 
-  return true if num == 2
-
-  count = 0
-  (2...num).each do |divisor|
-    return true unless num % divisor == 0
+  (2...num).each do |i|
+    if num % i == 0
+      return false
+    end
   end
+
+  return true
 end
 
 print prime_factors(24) #=> [2, 3]

@@ -132,25 +132,24 @@ describe "#sorted?" do
 end
 
 describe "#reverse" do
-  #Problem 6: Write the code to give the value of a number after it is
-  #reversed. (Don't use any #reverse methods!)
+  #Problem 6: Write a recursive function to reverse a string. Don't use any built-in #reverse methods!
 
-  it "returns same number if only one digit" do
-    reverse(1).should == 1
+  it "returns same string if only one letter" do
+    reverse("a").should == "a"
   end
 
-  it "returns reversed number if more than one digit" do
-    reverse(12345).should == 54321
+  it "returns reversed string if more than one letter" do
+    reverse("horse").should == "esroh"
   end
 
-  it "should not modify original number" do
-    original = 123456
+  it "should not modify original string" do
+    original = "horse"
     reverse(original)
-    original.should == 123456
+    original.should == "horse"
   end
 
   it "calls itself recursively" do    
     should_receive(:reverse).at_least(:twice).and_call_original
-    reverse(123456)
+    reverse("horse")
   end
 end

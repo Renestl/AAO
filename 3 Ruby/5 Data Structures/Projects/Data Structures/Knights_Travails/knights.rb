@@ -27,14 +27,14 @@ class KnightPathFinder
 
 		build_move_tree
 	end
-	
-	def new_move_positions(pos)
-		KnightPathFinder.valid_moves(pos)
-			.reject { |move| @considered_positions.include?(move)}
-			.each { |move| @considered_positions << move }
-	end
 
-	# private
+	def find_path(end_pos)
+		end_node = root_node.bfs(end_pos)
+
+		trace_path_back(end_node).reverse.map(&:value)
+	end
+	
+	private
 
   attr_accessor :root_node, :considered_positions
 
@@ -49,14 +49,39 @@ class KnightPathFinder
 			current_pos = current_node.value
 
 			new_move_positions(current_pos).each do | next_pos|
-				p next_node = PolyTreeNode.new(next_pos)
+				next_node = PolyTreeNode.new(next_pos)
 				current_node.add_child(next_node)
 				node_queue << next_node
 			end
 		end
 	end
 
-	def find_path
+	def new_move_positions(pos)
+		KnightPathFinder.valid_moves(pos)
+			.reject { |move| @considered_positions.include?(move)}
+			.each { |move| @considered_positions << move }
 	end
 
+	def trace_path_back(end_node)
+		path = []
+
+		current_node = end_node
+
+		until current_node.nil?
+			path << current_node
+			current_node = current_node.parent
+		end
+
+		path
+	end
+end
+
+if __FILE__ == $PROGRAM_NAME
+	kpf = KnightPathFinder.new([0, 0])
+
+	p kpf.find_path([0, 0]) # => [[0, 0]]
+	p kpf.find_path([2, 1]) # => [[0, 0], [2, 1]]
+	p kpf.find_path([3, 3]) # => [[0, 0], [2, 1], [3, 3]]
+	p kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+	p kpf.find_path([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
 end

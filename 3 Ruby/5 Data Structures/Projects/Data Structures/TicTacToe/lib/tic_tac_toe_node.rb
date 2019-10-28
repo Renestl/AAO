@@ -25,7 +25,6 @@ class TicTacToeNode
 
   def winning_node?(evaluator)
     if self.board.over?
-      return false if self.board.winner == nil
       return true if self.board.winner == evaluator
       return false
     end

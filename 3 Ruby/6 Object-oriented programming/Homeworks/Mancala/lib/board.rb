@@ -2,11 +2,22 @@ class Board
   attr_accessor :cups
 
   def initialize(name1, name2)
+    @cups = Array.new(14)
+
+    place_stones
   end
 
   def place_stones
     # helper method to #initialize every non-store cup with four stones each
 
+    # map! to reassign in place
+    @cups.map!.with_index do |cup, index|
+      if index != 6 && index != 13
+        cup = Array.new(4) {:stone}
+      else
+        cup = []
+      end
+    end
   end
 
   def valid_move?(start_pos)
@@ -14,7 +25,6 @@ class Board
 
   def make_move(start_pos, current_player_name)
 
-    render
   end
 
   def next_turn(ending_cup_idx)

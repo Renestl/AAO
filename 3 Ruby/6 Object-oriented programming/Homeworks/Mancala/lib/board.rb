@@ -34,7 +34,7 @@ class Board
 
   def make_move(start_pos, current_player_name)
     stone_count = @cups[start_pos].length
-
+    
     current_cup = start_pos
 
     # distributes stones
@@ -50,15 +50,27 @@ class Board
       else
         @cups[current_cup] << @cups[start_pos].pop
       end
-    
-      stone_count = @cups[start_pos].length
+      
+      stone_count = @cups[start_pos].length  
     end
-
+    
     render
+    next_turn(current_cup)    
   end
 
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
+
+    if ending_cup_idx == 6 || ending_cup_idx == 13
+      # ended in point cup, prompt current player for next starting cup
+      :prompt
+    elsif @cups[ending_cup_idx].count == 1
+      # end on empty cup, switch players
+      :switch
+    else
+      # ended on cup with stones, player continues from current cup
+      ending_cup_idx
+    end
   end
 
   def render

@@ -23,13 +23,8 @@ class Board
   end
 
   def valid_move?(start_pos)
-    if !start_pos.between?(0,13)
-      raise "Invalid starting cup"
-    end
-
-    if @cups[start_pos].length == 0
-      raise "Starting cup is empty"
-    end
+    raise "Invalid starting cup" if !start_pos.between?(0,13)
+    raise "Starting cup is empty" if @cups[start_pos].length == 0
   end
 
   def make_move(start_pos, current_player_name)

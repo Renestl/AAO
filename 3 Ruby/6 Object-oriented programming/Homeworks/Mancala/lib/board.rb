@@ -86,5 +86,13 @@ class Board
   end
 
   def winner
+    player1_stone_count = @cups[6].count
+    player2_stone_count = @cups[13].count
+
+    if  player1_stone_count == player2_stone_count
+      :draw 
+    else
+      player1_stone_count > player2_stone_count ? @name1 : @name2
+    end
   end
 end

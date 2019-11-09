@@ -2,6 +2,8 @@ class Board
   attr_accessor :cups
 
   def initialize(name1, name2)
+    @name1 = name1
+    @name2 = name2
     @cups = Array.new(14)
 
     place_stones
@@ -31,7 +33,31 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    stone_count = @cups[start_pos].length
+    current_cup = start_pos + 1
 
+    until stone_count == 0
+
+      if current_cup == 6
+        @cups[current_cup] << @cups[start_pos].pop if current_player_name == @name1
+      elsif current_cup == 13
+        @cups[current_cup] << @cups[start_pos].pop  if current_player_name == @name2
+      else
+        @cups[current_cup] << @cups[start_pos].pop
+      end
+    
+
+      if current_cup == 13
+        current_cup = 0
+      else 
+        current_cup = current_cup + 1  
+      end 
+      
+      stone_count = @cups[start_pos].length
+      
+    end
+
+    render
   end
 
   def next_turn(ending_cup_idx)

@@ -34,10 +34,15 @@ class Board
 
   def make_move(start_pos, current_player_name)
     stone_count = @cups[start_pos].length
-    current_cup = start_pos + 1
 
+    current_cup = start_pos
+
+    # distributes stones
     until stone_count == 0
+      current_cup = current_cup + 1
+      current_cup = 0 if current_cup > 13
 
+      # empties cup and puts stones in correct cups
       if current_cup == 6
         @cups[current_cup] << @cups[start_pos].pop if current_player_name == @name1
       elsif current_cup == 13
@@ -46,15 +51,7 @@ class Board
         @cups[current_cup] << @cups[start_pos].pop
       end
     
-
-      if current_cup == 13
-        current_cup = 0
-      else 
-        current_cup = current_cup + 1  
-      end 
-      
       stone_count = @cups[start_pos].length
-      
     end
 
     render

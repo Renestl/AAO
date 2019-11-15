@@ -24,10 +24,14 @@ class Manager < Employee
 
     @employees.each do |emp|
       emp.each do |sub |
-        total_sub_salary += sub.salary
+        if sub.class == Employee
+          total_sub_salary += sub.salary * multiplier
+        else
+          total_sub_salary += sub.bonus(multiplier) + sub.salary * multiplier
+        end
       end
     end
-    total_sub_salary * multiplier
+    total_sub_salary
   end
 end
 
